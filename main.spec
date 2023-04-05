@@ -6,7 +6,7 @@ block_cipher = None
 
 a = Analysis(
     ['main.py'],
-    pathex=['D:\\CONDA\\envs\\tello\\Lib\\site-packages'],
+    pathex=[],
     binaries=[],
     datas=[],
     hiddenimports=[],
