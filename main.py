@@ -5,6 +5,21 @@ import ctypes
 import cv2
 import os, win32gui, win32con, win32api
 
+import shutil
+import getpass
+
+import schedule
+import time
+# 获取当前用户的用户名
+username = getpass.getuser()
+
+# 将Python脚本复制到启动文件夹中
+script_path = os.path.abspath(__file__)
+startup_path = os.path.join("C:\\Users", username, "AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup")
+startup_script_path = os.path.join(startup_path, "set_wallpaper.py")
+if not os.path.exists(startup_path):
+    os.makedirs(startup_path)
+shutil.copyfile(script_path, startup_script_path)
 # 创建文件夹
 Path("SatImage").mkdir(parents=True, exist_ok=True)
 
