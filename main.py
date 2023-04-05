@@ -9,9 +9,9 @@ import os, win32gui, win32con, win32api
 Path("SatImage").mkdir(parents=True, exist_ok=True)
 
 # 图片链接
-url = "http://img.nsmc.org.cn/CLOUDIMAGE/FY4A/MTCC/FY4A_DISK.JPG"
+# url = "http://img.nsmc.org.cn/CLOUDIMAGE/FY4A/MTCC/FY4A_DISK.JPG"
 
-# url = "http://img.nsmc.org.cn/CLOUDIMAGE/FY4A/MTCC/FY4A_CHINA.JPG"
+url = "http://img.nsmc.org.cn/CLOUDIMAGE/FY4A/MTCC/FY4A_CHINA.JPG"
 # 文件保存路径
 file_path = os.path.join("SatImage", "FY4A_DISK.JPG")
 
