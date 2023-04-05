@@ -11,7 +11,10 @@ Path("SatImage").mkdir(parents=True, exist_ok=True)
 # 图片链接
 # url = "http://img.nsmc.org.cn/CLOUDIMAGE/FY4A/MTCC/FY4A_DISK.JPG"
 
-url = "http://img.nsmc.org.cn/CLOUDIMAGE/FY4A/MTCC/FY4A_CHINA.JPG"
+# url = "http://img.nsmc.org.cn/CLOUDIMAGE/FY4A/MTCC/FY4A_CHINA.JPG"
+# http://img.nsmc.org.cn/CLOUDIMAGE/FY4A/MTCC/FY4A_DISK.JPG
+
+url = "http://img.nsmc.org.cn/CLOUDIMAGE/FY4A/MTCC/FY4A_DISK.JPG"
 # 文件保存路径
 file_path = os.path.join("SatImage", "FY4A_DISK.JPG")
 
@@ -20,7 +23,7 @@ response = requests.get(url)
 with open(file_path, "wb") as file:
     file.write(response.content)
     img = cv2.imread(file_path)
-    cropped = img[0:1080, 80:2000]  # 裁剪坐标为[y0:y1, x0:x1]
+    cropped = img[0:1080, 150:2070]  # 裁剪坐标为[y0:y1, x0:x1]
     cv2.imwrite("./SatImage/wallpaper.jpg", cropped)
 
 # 设置为Windows 10桌面壁纸
