@@ -45,7 +45,7 @@ def set_wallpaper(img_path):
 
 
 # 注意路径书写问题
-img_path = "E:/BDS/卫星壁纸1.0/SatWP/SatImage/wallpaper.jpg"
+img_path = os.path.abspath("./SatImage/wallpaper.jpg")
 
 # 切换时要检查一下图片是否存在
 if os.path.exists(img_path):
