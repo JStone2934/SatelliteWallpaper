@@ -40,8 +40,8 @@ response = requests.get(url)
 with open(file_path, "wb") as file:
     file.write(response.content)
     img = cv2.imread(file_path)
-    cropped = img[0:1080, 150:2070]  # 裁剪坐标为[y0:y1, x0:x1]
-    cv2.imwrite("./SatImage/wallpaper.jpg", cropped)
+    # cropped = img[0:1080, 150:2070]  # 裁剪坐标为[y0:y1, x0:x1]
+    # cv2.imwrite("./SatImage/wallpaper.jpg", cropped)
 
 # 设置为Windows 10桌面壁纸
     '''
@@ -59,13 +59,13 @@ def set_wallpaper(img_path):
     # 最后的参数:2拉伸,0居中,6适应,10填充,0平铺
     win32api.RegSetValueEx(reg_key, "WallpaperStyle", 0, win32con.REG_SZ, "0")
     # 最后的参数:1表示平铺,拉伸居中等都是0
-    win32api.RegSetValueEx(reg_key, "TileWallpaper", 0, win32con.REG_SZ, "0")
+    win32api.RegSetValueEx(reg_key, "TileWallpaper", 0, win32con.REG_SZ, "1")
     # 刷新桌面与设置壁纸
     win32gui.SystemParametersInfo(win32con.SPI_SETDESKWALLPAPER, img_path, win32con.SPIF_SENDWININICHANGE)
 
 
 # 注意路径书写问题
-img_path = os.path.abspath("./SatImage/wallpaper.jpg")
+img_path = os.path.abspath("./SatImage/FY4A_DISK.JPG")
 
 # 切换时要检查一下图片是否存在
 if os.path.exists(img_path):
