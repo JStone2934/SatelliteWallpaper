@@ -4,9 +4,6 @@ import sys
 import win32gui,win32con,win32api
 import cv2
 import time
-from PyQt5.QtWidgets import QApplication, QSystemTrayIcon, QMenu, QAction
-from PyQt5.QtGui import QIcon
-os.environ['QT_QPA_PLATFORM_PLUGIN_PATH'] = 'E:/BDS/卫星壁纸1.0/SatWP_V2.0/venv/satwp/Lib/site-packages/PyQt5/Qt5/plugins/platforms' 
 
 url = "exp"
 file_path = "e:/BDS/卫星壁纸1.0/SatWP_V2.0/1.jpg"
@@ -37,13 +34,18 @@ app = QApplication(sys.argv)
 '''
     
 
-def set_wallpaper():
+def set_wallpaper(tray_menu):
     t=time.localtime()
     current_time=t.tm_hour
     print(current_time)
-    if current_time<16 and current_time>9:
+    if tray_menu==1:
+        if current_time<16 and current_time>9:
+            n_img=1
+        else:
+            n_img=2
+    if tray_menu==2:
         n_img=1
-    else:
+    if tray_menu==3:
         n_img=2
     dir_path = os.path.dirname(os.path.abspath(__file__))
     dir_path=dir_path.replace("\\","/")
@@ -101,10 +103,10 @@ def show_window():
 def quit_program():
     exit(0)
 '''
-def action():
+def action(tray_menu):
     for u in urls:
         get_image(u)
-    set_wallpaper()
+    set_wallpaper(tray_menu)
 
 if __name__ == '__main__':
     action()
