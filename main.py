@@ -9,24 +9,23 @@ FY4A_CN = "http://img.nsmc.org.cn/CLOUDIMAGE/FY4A/MTCC/FY4A_CHINA.JPG"
 FY4B_CN = "http://img.nsmc.org.cn/CLOUDIMAGE/FY4B/AGRI/GCLR/FY4B_REGC_GCLR.JPG"
 urls = [FY4B_SW, FY4A_TURE, FY4B_CN, FY4A_CN]
 names = ["FY4B_SW", "FY4A_TURE", "FY4B_CN", "FY4A_CN"]
-
+i = 0
 
 def get_image(url):
+    global i
     try:
         os.makedirs(file_path)
         print("创建文件夹")
-
     except:
         print("路径正常"),
     try:
-        i = 0
         if i == 4:
             i = 0
         else:
-            pass
+            i = i+1
         image_path = names[i]
-        urllib.request.urlretrieve(url, "./SatImage/" + image_path + ".jpg")
-        print(url)
+        urllib.request.urlretrieve(url, "./SatImage/" + str(i) + ".jpg")
+        # print(names[i])
         print("数据获取完成")
 
     except:
