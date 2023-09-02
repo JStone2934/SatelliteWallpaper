@@ -22,6 +22,7 @@ sat_status="fghj"
 def timer():
     t=time.localtime()
     while True:
+        main.sat_status="卫星状态\n-----初始化-----\n"
         auto_set()
         time.sleep(1200)
 
@@ -62,7 +63,7 @@ menu = (MenuItem(text='卫星数据更新', action=auto_set),
         MenuItem(text='退出', action=on_exit),
         )
 image = Image.open("icon.png")
-icon = pystray.Icon("name", image,"风暴眼", menu)
+icon = pystray.Icon("name", image,"风暴眼  V2.0", menu)
 init()
 
 # icon.run()
