@@ -1,8 +1,12 @@
 import urllib.request
 import os
+import sys
 import win32gui,win32con,win32api
 import cv2
 import time
+from PyQt5.QtWidgets import QApplication, QSystemTrayIcon, QMenu, QAction
+from PyQt5.QtGui import QIcon
+os.environ['QT_QPA_PLATFORM_PLUGIN_PATH'] = 'E:/BDS/卫星壁纸1.0/SatWP_V2.0/venv/satwp/Lib/site-packages/PyQt5/Qt5/plugins/platforms' 
 
 url = "exp"
 file_path = "e:/BDS/卫星壁纸1.0/SatWP_V2.0/1.jpg"
@@ -15,6 +19,8 @@ FY4B_CN = "http://img.nsmc.org.cn/CLOUDIMAGE/FY4B/AGRI/GCLR/FY4B_REGC_GCLR.JPG"
 urls = [FY4B_SW, FY4A_TURE, FY4B_CN, FY4A_CN]
 names = ["FY4B_DISK_SWCI", "FY4A_DISK", "FY4A_CHINA", "FY4B_REGC_GCLR"]
 i = 0
+
+
 
 def set_wallpaper():
     t=time.localtime()
@@ -39,7 +45,6 @@ def set_wallpaper():
         win32gui.SystemParametersInfo(win32con.SPI_SETDESKWALLPAPER, current_path, win32con.SPIF_SENDWININICHANGE)
     except:
         print("错误")
-        n_img=n_img+1
 
 def get_image(url):
     global i
@@ -75,8 +80,28 @@ def print_hi(name):
     print(f'Hi, {name}')  
 
 
-if __name__ == '__main__':
+def show_window():
     for u in urls:
         get_image(u)
 
     set_wallpaper()
+
+def quit_program():
+    exit(0)
+
+if __name__ == '__main__':
+
+    app = QApplication(sys.argv)
+    tray_icon = QSystemTrayIcon(QIcon('icon.png'),app)
+    menu = QMenu()
+    action_show = QAction("Display")
+    action_quit = QAction("quit")
+
+    menu.addAction(action_show)
+    menu.addAction(action_quit)
+    tray_icon.setContextMenu(menu)
+
+    action_show.triggered.connect(show_window)
+    action_quit.triggered.connect(quit_program)
+    
+    tray_icon.show()
