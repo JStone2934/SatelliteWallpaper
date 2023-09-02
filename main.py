@@ -41,7 +41,7 @@ def set_wallpaper():
     t=time.localtime()
     current_time=t.tm_hour
     print(current_time)
-    if current_time<15 and current_time>9:
+    if current_time<16 and current_time>9:
         n_img=1
     else:
         n_img=2
@@ -101,10 +101,11 @@ def show_window():
 def quit_program():
     exit(0)
 '''
-
-if __name__ == '__main__':
-
+def action():
     for u in urls:
         get_image(u)
-
     set_wallpaper()
+
+if __name__ == '__main__':
+    action()
+   
