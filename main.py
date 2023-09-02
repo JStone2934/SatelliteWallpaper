@@ -5,7 +5,7 @@ import win32gui,win32con,win32api
 import cv2
 import time
 
-url = "exp"
+sat_status="卫星数据状态:\n"
 file_path = "e:/BDS/卫星壁纸1.0/SatWP_V2.0/1.jpg"
 # file_path = "./SatImage/1.jpg"
 data_path="./SatImage"
@@ -67,17 +67,21 @@ def set_wallpaper(tray_menu):
 
 def get_image(url):
     global i
+    global sat_status
     try:
         os.makedirs(data_path)
         print("创建文件夹")
+        sat_status=sat_status+time.asctime()+"创建文件夹\n"
     except:
-        print("路径正常"),
+        print("路径正常")
+        sat_status=sat_status+time.asctime()+"数据路径正常\n"
     try:
         i=i+1
         image_path = names[i]
         urllib.request.urlretrieve(url, "./SatImage/" + str(i) + ".jpg")
         # print(names[i])
         print("数据获取完成"+"-----"+str(i))
+        sat_status=sat_status+time.asctime()+"数据获取完成"+"-----"+str(i)+"\n"
         img = cv2.imread("./SatImage/" + str(i) + ".jpg")
         size = img.shape
         print(size)
@@ -87,11 +91,13 @@ def get_image(url):
             h=w/1.78
             h=int(h)
         print(h,w)
+        sat_status=sat_status+time.asctime()+" "+str(h)+"--"+str(w)+"\n"
         cropped = img[0:h, 0:w]  # 裁剪坐标为[y0:y1, x0:x1]
         cv2.imwrite("./SatImage/"+ str(i) +".jpg", cropped)
 
     except:
         print("数据读取失败")
+        sat_status=sat_status+time.asctime()+"数据读取失败"+"\n"
 
 '''
 def print_hi(name):
@@ -110,6 +116,6 @@ def action(tray_menu):
         get_image(u)
     set_wallpaper(tray_menu)
 
-if __name__ == '__main__':
-    action()
+
+    
    
