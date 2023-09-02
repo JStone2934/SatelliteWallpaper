@@ -3,6 +3,10 @@ from PIL import Image
 from pystray import MenuItem
 import main
 import win32gui,win32con,win32api
+import time
+
+def init():
+    win32api.MessageBox(0,"正在连接卫星...距初始化完成还有30秒","风暴眼",win32con.MB_ICONWARNING)
 
 status = "正在连接卫星.."
 sat_status="fghj"
@@ -45,4 +49,7 @@ menu = (MenuItem(text='卫星数据更新', action=auto_set),
         )
 image = Image.open("icon.png")
 icon = pystray.Icon("name", image,"风暴眼", menu)
+init()
+auto_set()
 icon.run()
+
