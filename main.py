@@ -19,8 +19,23 @@ FY4B_CN = "http://img.nsmc.org.cn/CLOUDIMAGE/FY4B/AGRI/GCLR/FY4B_REGC_GCLR.JPG"
 urls = [FY4B_SW, FY4A_TURE, FY4B_CN, FY4A_CN]
 names = ["FY4B_DISK_SWCI", "FY4A_DISK", "FY4A_CHINA", "FY4B_REGC_GCLR"]
 i = 0
+'''
+app = QApplication(sys.argv)
+    tray_icon = QSystemTrayIcon(QIcon('icon.png'),app)
+    menu = QMenu()
+    action_show = QAction("Display")
+    action_quit = QAction("quit")
 
+    menu.addAction(action_show)
+    menu.addAction(action_quit)
+    tray_icon.setContextMenu(menu)
 
+    action_show.triggered.connect(show_window)
+    action_quit.triggered.connect(quit_program)
+    
+    tray_icon.show()
+'''
+    
 
 def set_wallpaper():
     t=time.localtime()
@@ -74,34 +89,22 @@ def get_image(url):
     except:
         print("数据读取失败")
 
-
+'''
 def print_hi(name):
   
     print(f'Hi, {name}')  
 
 
 def show_window():
+    
+
+def quit_program():
+    exit(0)
+'''
+
+if __name__ == '__main__':
+
     for u in urls:
         get_image(u)
 
     set_wallpaper()
-
-def quit_program():
-    exit(0)
-
-if __name__ == '__main__':
-
-    app = QApplication(sys.argv)
-    tray_icon = QSystemTrayIcon(QIcon('icon.png'),app)
-    menu = QMenu()
-    action_show = QAction("Display")
-    action_quit = QAction("quit")
-
-    menu.addAction(action_show)
-    menu.addAction(action_quit)
-    tray_icon.setContextMenu(menu)
-
-    action_show.triggered.connect(show_window)
-    action_quit.triggered.connect(quit_program)
-    
-    tray_icon.show()
