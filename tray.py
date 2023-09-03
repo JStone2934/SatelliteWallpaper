@@ -31,6 +31,8 @@ def timer():
         time.sleep(1200)
 
 def auto_set():
+    status="连接卫星...."
+    icon.notify(status)
     main.action(1)
     
     status="卫星数据已更新"
