@@ -9,10 +9,12 @@ def init():
     win32api.MessageBox(0,"正在连接卫星...距初始化完成还有30秒","风暴眼",win32con.MB_ICONWARNING)
     threads=[]
     t1=Thread(target=timer,name="sat",daemon=True)
-    threads.append(t1)
+    
     t2=Thread(target=icon.run,name="tray")
     threads.append(t2)
+    threads.append(t1)
     print("--------启动-------")
+    
     for t in threads:
         t.start()
     
@@ -21,6 +23,8 @@ sat_status="fghj"
 
 def timer():
     t=time.localtime()
+    p=0
+    
     while True:
         main.sat_status="卫星状态\n-----初始化-----\n"
         auto_set()
@@ -28,18 +32,21 @@ def timer():
 
 def auto_set():
     main.action(1)
+    
     status="卫星数据已更新"
-    icon.notify('Hello World!')
+    icon.notify(status)
 
 def FY4B():
     main.action(2)
     status="正在使用FY4B卫星数据..."
     icon = pystray.Icon("name", image, status, menu)
+    
 
 def FY4A():
     main.action(3)
     status="正在使用FY4A卫星数据..."
     icon = pystray.Icon("name", image, status, menu)
+    
 
 def CN():
     main.action(4)

@@ -76,8 +76,11 @@ def get_image(url):
         print("路径正常")
         sat_status=sat_status+time.asctime()+"数据路径正常\n"
     try:
-        i=i+1
-        image_path = names[i]
+        if i>3:
+            i=1
+        else:
+            i=i+1
+        # image_path = names[i]
         urllib.request.urlretrieve(url, "./SatImage/" + str(i) + ".jpg")
         # print(names[i])
         print("数据获取完成"+"-----"+str(i))
@@ -95,7 +98,8 @@ def get_image(url):
         cropped = img[0:h, 0:w]  # 裁剪坐标为[y0:y1, x0:x1]
         cv2.imwrite("./SatImage/"+ str(i) +".jpg", cropped)
 
-    except:
+    except IOError as e:
+        print('捕获到异常',e)
         print("数据读取失败")
         sat_status=sat_status+time.asctime()+"数据读取失败"+"\n"
 
