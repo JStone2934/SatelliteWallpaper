@@ -49,7 +49,7 @@ def set_wallpaper(tray_menu):
         n_img=2
     if tray_menu==4:
         n_img=3
-    dir_path = os.path.dirname(os.path.abspath(__file__))
+    dir_path = os.path.dirname(os.path.dirname(os.path.realpath(sys.executable)))
     dir_path=dir_path.replace("\\","/")
     current_path=dir_path+"/SatImage/"+str(n_img)+".jpg"
     print(current_path)
