@@ -108,7 +108,10 @@ def CN():
     main.action(4)
 
 def on_exit(icon, item):
-    Dashboard.stop_dashboard()
+    try:
+        Dashboard.stop_dashboard()
+    except:
+        pass
     icon.stop()
 
 def SatrtAutoRun():
