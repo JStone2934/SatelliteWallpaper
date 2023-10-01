@@ -1,0 +1,1 @@
+pyinstaller -F -w -i .\icon.png -n 风暴眼 -p E:\BDS\sat_QT\src\swb\Lib\site-packages --version-file version.txt tray.py
