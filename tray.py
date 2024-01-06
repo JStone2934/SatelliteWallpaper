@@ -17,12 +17,20 @@ import base64
 from icon_png import img as one
 import winshell
 from win32com.client import Dispatch
-
+import ctypes
 import pythoncom
 yes_no=0
 N_select=1 #默认开启弹窗
 
+def is_admin():
+    try:
+        return ctypes.windll.shell32.IsUserAnAdmin()
+    except:
+        return False
 
+if not is_admin():
+    ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
+    sys.exit()
 
 class AutoRun():
  
@@ -38,6 +46,7 @@ class AutoRun():
         #remove_shortcut_on_desktop()
         try:
             create_shortcut_on_desktop()
+            
             #key = win32api.RegOpenKey(win32con.HKEY_CURRENT_USER,  KeyName, 0,  win32con.KEY_ALL_ACCESS)
             # win32api.RegSetValueEx(key, name, 0, win32con.REG_SZ, "NULL")
             #win32api.RegSetValueEx(key, name, 0, win32con.REG_SZ, path)
@@ -50,7 +59,6 @@ class AutoRun():
 
 def create_shortcut_on_desktop():
     try:
-
         # 获取当前脚本的路径
         script_path = os.path.abspath(sys.argv[0])
         
@@ -62,7 +70,7 @@ def create_shortcut_on_desktop():
         startupDir = os.path.join(sysName,r"/users",username,r"AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup")
         print("自启动目录：",startupDir)
         # 创建快捷方式的路径和名称
-        path = os.path.join(startupDir, "风暴眼.exe.lnk")  # 这里的 YourShortcutName 是你希望的快捷方式名称
+        path = os.path.join(startupDir, r"风暴眼.exe.lnk")  # 这里的 YourShortcutName 是你希望的快捷方式名称
         desktop2start=desktop+"\\风暴眼.exe.lnk"
         #
         # 创建快捷方式
@@ -88,6 +96,14 @@ def create_shortcut_on_desktop():
         print("Shortcut created successfully on the desktop.")
     except Exception as e:
         print(f"An error occurred: {e}")
+
+def is_admin():
+    try:
+        return ctypes.windll.shell32.IsUserAnAdmin()
+    except:
+        return False
+
+
 
 def remove_shortcut_on_desktop():
     try:
@@ -129,7 +145,7 @@ class Stop_AutoRun():
 
 def init():
     
-    win32api.MessageBox(0,"正在连接卫星...距初始化完成还有30秒","风暴眼",win32con.MB_ICONWARNING)
+    #win32api.MessageBox(0,"正在连接卫星...距初始化完成还有30秒","风暴眼",win32con.MB_ICONWARNING)
     threads=[]
     t1=Thread(target=timer,name="sat",daemon=True)
     
