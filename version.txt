@@ -31,7 +31,7 @@ VSVersionInfo(
       StringTable(
         u'040904B0',
 	
-        [StringStruct(u'FileDescription', u'优化软件大小，修复开机自启功能'),
+        [StringStruct(u'FileDescription', u'风暴眼'),
         StringStruct(u'FileVersion', u'2, 4, 5, 0'),
 	
         StringStruct(u'InternalName', u'MaiGa entertainment chain'),
