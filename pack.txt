@@ -1,0 +1,7 @@
+# pyinstaller -F -w -i .\icon.png -n 风暴眼 -p E:\BDS\sat_QT\src\swb\Lib\site-packages --version-file version.txt tray.py
+
+pyinstaller -F -w -i .\icon.png -n 风暴眼 --version-file version.txt tray.py -p d:\conda\envs\satwp\lib\site-packages
+
+pyinstaller -F -w -i .\icon.png -n 风暴眼 --version-file version.txt tray.py -p d:\conda\envs\satwp\lib\site-packages --clean 风暴眼.spec
+
+pyinstaller -F -w -i .\icon.png -n 风暴眼 --version-file version.txt tray.py 
