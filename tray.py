@@ -76,7 +76,7 @@ def create_shortcut_on_desktop():
         winshell.CreateShortcut(
             Path=path,
             Target=script_path,
-            Icon=(script_path, 0),
+            #Icon=(script_path, 0),
 		)
 
         '''

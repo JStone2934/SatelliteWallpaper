@@ -116,18 +116,24 @@ def get_image(url):
         #img = cv2.imread("./SatImage/" + str(i) + ".jpg")
         size = img.size
         print(size)
-        w=size[1]
-        h=size[0]
+        w=size[0]
+        h=size[1]
+        print(h,w)
         if(w/h<1.5):
             h=w/1.78
             h=int(h)
-        print(h,w)
+            cropped = img.crop((0, 0, w, h))  # (left, upper, right, lower)
+            cropped.save("./SatImage/"+ str(i) +".jpg")
+        else:
+            h=h*0.9
+            cropped = img.crop((0, 0, w, h))  # (left, upper, right, lower)
+            cropped.save("./SatImage/"+ str(i) +".jpg")
+        
         sat_status=sat_status+time.asctime()+" "+str(h)+"--"+str(w)+"\n"
         #cropped = img[0:h, 0:w]  # 裁剪坐标为[y0:y1, x0:x1]
         #cv2.imwrite("./SatImage/"+ str(i) +".jpg", cropped)
         print(img.size)
-        cropped = img.crop((0, 0, w, h))  # (left, upper, right, lower)
-        cropped.save("./SatImage/"+ str(i) +".jpg")
+        
 
 
 
